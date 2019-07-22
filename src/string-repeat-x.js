@@ -1,6 +1,7 @@
 import numberIsFinite from 'is-finite-x';
 import toInteger from 'to-integer-x';
-import requireObjectCoercibleToString from 'require-coercible-to-string-x';
+import requireObjectCoercible from 'require-object-coercible-x';
+import toStr from 'to-string-x';
 import attempt from 'attempt-x';
 
 const EMPTY_STRING = '';
@@ -18,13 +19,13 @@ let $repeat;
 
 if (hasNative) {
   $repeat = function repeat(value, count) {
-    const result = nativeRepeat.call(requireObjectCoercibleToString(value), count);
+    const result = nativeRepeat.call(requireObjectCoercible(value), count);
 
     return typeof result === 'string' ? result : EMPTY_STRING;
   };
 } else {
   $repeat = function repeat(value, count) {
-    let string = requireObjectCoercibleToString(value);
+    let string = toStr(requireObjectCoercible(value));
     let n = toInteger(count);
 
     // Account for out-of-bounds indices

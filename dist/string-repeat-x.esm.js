@@ -4,7 +4,8 @@ function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { t
 
 import numberIsFinite from 'is-finite-x';
 import toInteger from 'to-integer-x';
-import requireObjectCoercibleToString from 'require-coercible-to-string-x';
+import requireObjectCoercible from 'require-object-coercible-x';
+import toStr from 'to-string-x';
 import attempt from 'attempt-x';
 var EMPTY_STRING = '';
 var nativeRepeat = EMPTY_STRING.repeat;
@@ -25,12 +26,12 @@ var $repeat;
 
 if (hasNative) {
   $repeat = function repeat(value, count) {
-    var result = nativeRepeat.call(requireObjectCoercibleToString(value), count);
+    var result = nativeRepeat.call(requireObjectCoercible(value), count);
     return typeof result === 'string' ? result : EMPTY_STRING;
   };
 } else {
   $repeat = function repeat(value, count) {
-    var string = requireObjectCoercibleToString(value);
+    var string = toStr(requireObjectCoercible(value));
     var n = toInteger(count); // Account for out-of-bounds indices
 
     if (n < 0 || !numberIsFinite(n)) {

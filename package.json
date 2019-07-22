@@ -1,6 +1,6 @@
 {
   "name": "string-repeat-x",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Constructs and returns a new string which contains the specified number of copies of the string.",
   "homepage": "https://github.com/Xotic750/string-repeat-x",
   "author": {
@@ -51,8 +51,9 @@
   "dependencies": {
     "attempt-x": "^2.0.15",
     "is-finite-x": "^4.0.18",
-    "require-coercible-to-string-x": "^2.0.18",
-    "to-integer-x": "^4.0.20"
+    "require-object-coercible-x": "^2.0.19",
+    "to-integer-x": "^4.0.20",
+    "to-string-x": "^2.0.27"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",

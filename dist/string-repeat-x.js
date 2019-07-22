@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2019-present",
-  "date": "2019-07-22T15:20:25.288Z",
+  "date": "2019-07-22T17:41:27.778Z",
   "describe": "",
   "description": "Constructs and returns a new string which contains the specified number of copies of the string.",
   "file": "string-repeat-x.js",
-  "hash": "ff20b2f4b7e83a01d266",
+  "hash": "141b3b1c3fc941bb09a1",
   "license": "MIT",
-  "version": "1.0.1"
+  "version": "1.0.2"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1589,6 +1589,7 @@ function string_repeat_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis
 
 
 
+
 var string_repeat_x_esm_EMPTY_STRING = '';
 var nativeRepeat = string_repeat_x_esm_EMPTY_STRING.repeat;
 var hasNative = attempt_x_esm(function () {
@@ -1608,12 +1609,12 @@ var $repeat;
 
 if (hasNative) {
   $repeat = function repeat(value, count) {
-    var result = nativeRepeat.call(require_coercible_to_string_x_esm(value), count);
+    var result = nativeRepeat.call(require_object_coercible_x_esm(value), count);
     return typeof result === 'string' ? result : string_repeat_x_esm_EMPTY_STRING;
   };
 } else {
   $repeat = function repeat(value, count) {
-    var string = require_coercible_to_string_x_esm(value);
+    var string = to_string_x_esm(require_object_coercible_x_esm(value));
     var n = to_integer_x_esm(count); // Account for out-of-bounds indices
 
     if (n < 0 || !is_finite_x_esm(n)) {

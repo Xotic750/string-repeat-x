@@ -28,13 +28,8 @@ Constructs and returns a new string which contains the specified number of copie
 
 ### `module.exports` ⇒ <code>\*</code> ⏏
 
-This method is just a placeholder.
-
 **Kind**: Exported member  
 **Returns**: <code>\*</code> - The target.  
-**Throws**:
-
-- <code>Error</code> If target is not undefined.
 
 | Param    | Type                       | Description |
 | -------- | -------------------------- | ----------- |
