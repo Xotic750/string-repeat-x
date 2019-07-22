@@ -1,0 +1,63 @@
+var _this = this;
+
+function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
+
+import numberIsFinite from 'is-finite-x';
+import toInteger from 'to-integer-x';
+import requireObjectCoercibleToString from 'require-coercible-to-string-x';
+import attempt from 'attempt-x';
+var EMPTY_STRING = '';
+var nativeRepeat = EMPTY_STRING.repeat;
+var hasNative = attempt(function () {
+  _newArrowCheck(this, _this);
+
+  return nativeRepeat.call('a', 5);
+}.bind(this)).value === 'aaaaa';
+/**
+ * Repeat the given string the specified number of times.
+ *
+ * @param {string} value - The string to repeat.
+ * @param {(number|string)} count - The number of times to repeat the string.
+ * @returns {string} Repeated string.
+ */
+
+var $repeat;
+
+if (hasNative) {
+  $repeat = function repeat(value, count) {
+    var result = nativeRepeat.call(requireObjectCoercibleToString(value), count);
+    return typeof result === 'string' ? result : EMPTY_STRING;
+  };
+} else {
+  $repeat = function repeat(value, count) {
+    var string = requireObjectCoercibleToString(value);
+    var n = toInteger(count); // Account for out-of-bounds indices
+
+    if (n < 0 || !numberIsFinite(n)) {
+      throw new RangeError('Invalid count value');
+    }
+
+    var result = EMPTY_STRING;
+
+    while (n) {
+      if (n % 2 === 1) {
+        result += string;
+      }
+
+      if (n > 1) {
+        string += string;
+      }
+      /* eslint-disable-next-line no-bitwise */
+
+
+      n >>= 1;
+    }
+
+    return result;
+  };
+}
+
+var r = $repeat;
+export default r;
+
+//# sourceMappingURL=string-repeat-x.esm.js.map

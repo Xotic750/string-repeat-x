@@ -64,5 +64,3 @@ yarn-error.log
 
 # coverage results
 __tests__/coverage/
-
-dist/
