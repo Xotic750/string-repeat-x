@@ -26,8 +26,7 @@ var $repeat;
 
 if (hasNative) {
   $repeat = function repeat(value, count) {
-    var result = nativeRepeat.call(requireObjectCoercible(value), count);
-    return typeof result === 'string' ? result : EMPTY_STRING;
+    return nativeRepeat.call(requireObjectCoercible(value), count) || EMPTY_STRING;
   };
 } else {
   $repeat = function repeat(value, count) {

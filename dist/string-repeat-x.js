@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2019-present",
-  "date": "2019-07-22T17:41:27.778Z",
+  "date": "2019-07-22T21:30:38.230Z",
   "describe": "",
   "description": "Constructs and returns a new string which contains the specified number of copies of the string.",
   "file": "string-repeat-x.js",
-  "hash": "141b3b1c3fc941bb09a1",
+  "hash": "d826ab663ebeaaffd3ae",
   "license": "MIT",
-  "version": "1.0.2"
+  "version": "1.0.3"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1609,8 +1609,7 @@ var $repeat;
 
 if (hasNative) {
   $repeat = function repeat(value, count) {
-    var result = nativeRepeat.call(require_object_coercible_x_esm(value), count);
-    return typeof result === 'string' ? result : string_repeat_x_esm_EMPTY_STRING;
+    return nativeRepeat.call(require_object_coercible_x_esm(value), count) || string_repeat_x_esm_EMPTY_STRING;
   };
 } else {
   $repeat = function repeat(value, count) {
