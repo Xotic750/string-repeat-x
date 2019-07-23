@@ -18,13 +18,13 @@
 <img src="https://badge.fury.io/js/string-repeat-x.svg"
    alt="npm version" height="18"/>
 </a>
-<a name="module_module-boilerplate-x"></a>
+<a name="module_string-repeat-x"></a>
 
 ## string-repeat-x
 
 Constructs and returns a new string which contains the specified number of copies of the string.
 
-<a name="exp_module_module-boilerplate-x--module.exports"></a>
+<a name="exp_module_string-repeat-x--module.exports"></a>
 
 ### `module.exports` ⇒ <code>\*</code> ⏏
 
