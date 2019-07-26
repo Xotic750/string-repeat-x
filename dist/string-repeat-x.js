@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2019-present",
-  "date": "2019-07-25T23:01:41.139Z",
+  "date": "2019-07-26T16:26:28.621Z",
   "describe": "",
   "description": "Constructs and returns a new string which contains the specified number of copies of the string.",
   "file": "string-repeat-x.js",
   "hash": "3dde8d9af9e092d22ec9",
   "license": "MIT",
-  "version": "1.0.7"
+  "version": "1.0.8"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
