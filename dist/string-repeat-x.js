@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2019-present",
-  "date": "2019-07-26T16:26:28.621Z",
+  "date": "2019-07-27T15:28:46.967Z",
   "describe": "",
   "description": "Constructs and returns a new string which contains the specified number of copies of the string.",
   "file": "string-repeat-x.js",
-  "hash": "3dde8d9af9e092d22ec9",
+  "hash": "1a8b38f451673b82e767",
   "license": "MIT",
-  "version": "1.0.8"
+  "version": "1.0.9"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1296,8 +1296,6 @@ var binaryRadix = 2;
 var octalRadix = 8;
 var testCharsCount = 2;
 var to_number_x_esm_ERROR_MESSAGE = 'Cannot convert a Symbol value to a number';
-/** @type {NumberConstructor} */
-
 var to_number_x_esm_castNumber = testCharsCount.constructor;
 var pStrSlice = to_number_x_esm_ERROR_MESSAGE.slice;
 var binaryRegex = /^0b[01]+$/i;
