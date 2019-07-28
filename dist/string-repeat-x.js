@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2019-present",
-  "date": "2019-07-27T22:19:01.175Z",
+  "date": "2019-07-28T14:16:30.352Z",
   "describe": "",
   "description": "Constructs and returns a new string which contains the specified number of copies of the string.",
   "file": "string-repeat-x.js",
-  "hash": "1a8b38f451673b82e767",
+  "hash": "dfc9863ddeae1d167b2c",
   "license": "MIT",
   "version": "1.0.9"
 }
@@ -1425,6 +1425,7 @@ var to_integer_x_esm_toInteger = function toInteger(value) {
 
 
 // CONCATENATED MODULE: ./dist/string-repeat-x.esm.js
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "implementation", function() { return string_repeat_x_esm_implementation; });
 var string_repeat_x_esm_this = undefined;
 
 function string_repeat_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
@@ -1441,29 +1442,26 @@ var hasNative = attempt_x_esm(function () {
 
   return nativeRepeat.call('a', 5);
 }.bind(undefined)).value === 'aaaaa';
-/**
- * Repeat the given string the specified number of times.
- *
- * @param {string} value - The string to repeat.
- * @param {(number|string)} count - The number of times to repeat the string.
- * @returns {string} Repeated string.
- */
 
-var $repeat;
-
-if (hasNative) {
-  $repeat = function repeat(value, count) {
+var string_repeat_x_esm_patchedRepeat = function patchedRepeat() {
+  return function repeat(value, count) {
     return nativeRepeat.call(require_object_coercible_x_esm(value), count) || string_repeat_x_esm_EMPTY_STRING;
   };
-} else {
-  $repeat = function repeat(value, count) {
+};
+
+var string_repeat_x_esm_assertRange = function assertRange(n) {
+  // Account for out-of-bounds indices
+  if (n < 0 || !is_finite_x_esm(n)) {
+    throw new RangeError('Invalid count value');
+  }
+
+  return n;
+};
+
+var string_repeat_x_esm_implementation = function implementation() {
+  return function repeat(value, count) {
     var string = to_string_x_esm(require_object_coercible_x_esm(value));
-    var n = to_integer_x_esm(count); // Account for out-of-bounds indices
-
-    if (n < 0 || !is_finite_x_esm(n)) {
-      throw new RangeError('Invalid count value');
-    }
-
+    var n = string_repeat_x_esm_assertRange(to_integer_x_esm(count));
     var result = string_repeat_x_esm_EMPTY_STRING;
 
     while (n) {
@@ -1482,10 +1480,17 @@ if (hasNative) {
 
     return result;
   };
-}
+};
+/**
+ * Repeat the given string the specified number of times.
+ *
+ * @param {string} value - The string to repeat.
+ * @param {(number|string)} count - The number of times to repeat the string.
+ * @returns {string} Repeated string.
+ */
 
-var r = $repeat;
-/* harmony default export */ var string_repeat_x_esm = __webpack_exports__["default"] = (r);
+var $repeat = hasNative ? string_repeat_x_esm_patchedRepeat() : string_repeat_x_esm_implementation();
+/* harmony default export */ var string_repeat_x_esm = __webpack_exports__["default"] = ($repeat);
 
 
 

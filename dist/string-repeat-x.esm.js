@@ -14,29 +14,26 @@ var hasNative = attempt(function () {
 
   return nativeRepeat.call('a', 5);
 }.bind(this)).value === 'aaaaa';
-/**
- * Repeat the given string the specified number of times.
- *
- * @param {string} value - The string to repeat.
- * @param {(number|string)} count - The number of times to repeat the string.
- * @returns {string} Repeated string.
- */
 
-var $repeat;
-
-if (hasNative) {
-  $repeat = function repeat(value, count) {
+var patchedRepeat = function patchedRepeat() {
+  return function repeat(value, count) {
     return nativeRepeat.call(requireObjectCoercible(value), count) || EMPTY_STRING;
   };
-} else {
-  $repeat = function repeat(value, count) {
+};
+
+var assertRange = function assertRange(n) {
+  // Account for out-of-bounds indices
+  if (n < 0 || !numberIsFinite(n)) {
+    throw new RangeError('Invalid count value');
+  }
+
+  return n;
+};
+
+export var implementation = function implementation() {
+  return function repeat(value, count) {
     var string = toStr(requireObjectCoercible(value));
-    var n = toInteger(count); // Account for out-of-bounds indices
-
-    if (n < 0 || !numberIsFinite(n)) {
-      throw new RangeError('Invalid count value');
-    }
-
+    var n = assertRange(toInteger(count));
     var result = EMPTY_STRING;
 
     while (n) {
@@ -55,9 +52,16 @@ if (hasNative) {
 
     return result;
   };
-}
+};
+/**
+ * Repeat the given string the specified number of times.
+ *
+ * @param {string} value - The string to repeat.
+ * @param {(number|string)} count - The number of times to repeat the string.
+ * @returns {string} Repeated string.
+ */
 
-var r = $repeat;
-export default r;
+var $repeat = hasNative ? patchedRepeat() : implementation();
+export default $repeat;
 
 //# sourceMappingURL=string-repeat-x.esm.js.map
