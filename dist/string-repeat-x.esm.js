@@ -15,10 +15,8 @@ var hasNative = attempt(function () {
   return nativeRepeat.call('a', 5);
 }.bind(this)).value === 'aaaaa';
 
-var patchedRepeat = function patchedRepeat() {
-  return function repeat(value, count) {
-    return nativeRepeat.call(requireObjectCoercible(value), count) || EMPTY_STRING;
-  };
+var patchedRepeat = function repeat(value, count) {
+  return nativeRepeat.call(requireObjectCoercible(value), count) || EMPTY_STRING;
 };
 
 var assertRange = function assertRange(n) {
@@ -30,28 +28,26 @@ var assertRange = function assertRange(n) {
   return n;
 };
 
-export var implementation = function implementation() {
-  return function repeat(value, count) {
-    var string = toStr(requireObjectCoercible(value));
-    var n = assertRange(toInteger(count));
-    var result = EMPTY_STRING;
+export var implementation = function repeat(value, count) {
+  var string = toStr(requireObjectCoercible(value));
+  var n = assertRange(toInteger(count));
+  var result = EMPTY_STRING;
 
-    while (n) {
-      if (n % 2 === 1) {
-        result += string;
-      }
-
-      if (n > 1) {
-        string += string;
-      }
-      /* eslint-disable-next-line no-bitwise */
-
-
-      n >>= 1;
+  while (n) {
+    if (n % 2 === 1) {
+      result += string;
     }
 
-    return result;
-  };
+    if (n > 1) {
+      string += string;
+    }
+    /* eslint-disable-next-line no-bitwise */
+
+
+    n >>= 1;
+  }
+
+  return result;
 };
 /**
  * Repeat the given string the specified number of times.
@@ -61,7 +57,7 @@ export var implementation = function implementation() {
  * @returns {string} Repeated string.
  */
 
-var $repeat = hasNative ? patchedRepeat() : implementation();
+var $repeat = hasNative ? patchedRepeat : implementation;
 export default $repeat;
 
 //# sourceMappingURL=string-repeat-x.esm.js.map

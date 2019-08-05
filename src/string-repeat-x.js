@@ -8,10 +8,8 @@ const EMPTY_STRING = '';
 const {repeat: nativeRepeat} = EMPTY_STRING;
 const hasNative = attempt(() => nativeRepeat.call('a', 5)).value === 'aaaaa';
 
-const patchedRepeat = function patchedRepeat() {
-  return function repeat(value, count) {
-    return nativeRepeat.call(requireObjectCoercible(value), count) || EMPTY_STRING;
-  };
+const patchedRepeat = function repeat(value, count) {
+  return nativeRepeat.call(requireObjectCoercible(value), count) || EMPTY_STRING;
 };
 
 const assertRange = function assertRange(n) {
@@ -23,27 +21,25 @@ const assertRange = function assertRange(n) {
   return n;
 };
 
-export const implementation = function implementation() {
-  return function repeat(value, count) {
-    let string = toStr(requireObjectCoercible(value));
-    let n = assertRange(toInteger(count));
+export const implementation = function repeat(value, count) {
+  let string = toStr(requireObjectCoercible(value));
+  let n = assertRange(toInteger(count));
 
-    let result = EMPTY_STRING;
-    while (n) {
-      if (n % 2 === 1) {
-        result += string;
-      }
-
-      if (n > 1) {
-        string += string;
-      }
-
-      /* eslint-disable-next-line no-bitwise */
-      n >>= 1;
+  let result = EMPTY_STRING;
+  while (n) {
+    if (n % 2 === 1) {
+      result += string;
     }
 
-    return result;
-  };
+    if (n > 1) {
+      string += string;
+    }
+
+    /* eslint-disable-next-line no-bitwise */
+    n >>= 1;
+  }
+
+  return result;
 };
 
 /**
@@ -53,6 +49,6 @@ export const implementation = function implementation() {
  * @param {(number|string)} count - The number of times to repeat the string.
  * @returns {string} Repeated string.
  */
-const $repeat = hasNative ? patchedRepeat() : implementation();
+const $repeat = hasNative ? patchedRepeat : implementation;
 
 export default $repeat;
