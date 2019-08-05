@@ -6,7 +6,10 @@ import attempt from 'attempt-x';
 
 const EMPTY_STRING = '';
 const {repeat: nativeRepeat} = EMPTY_STRING;
-const hasNative = attempt(() => nativeRepeat.call('a', 5)).value === 'aaaaa';
+const hasNative =
+  attempt(function attemptee() {
+    return nativeRepeat.call('a', 5);
+  }).value === 'aaaaa';
 
 const patchedRepeat = function repeat(value, count) {
   return nativeRepeat.call(requireObjectCoercible(value), count) || EMPTY_STRING;

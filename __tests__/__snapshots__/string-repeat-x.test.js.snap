@@ -1,11 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`repeat should throw an error when count is invalid: 1`] = `"Invalid count value"`;
+exports[`repeat 0 should throw an error when count is invalid: 1`] = `"Invalid count value"`;
 
-exports[`repeat should throw an error when count is invalid: 2`] = `"Invalid count value"`;
+exports[`repeat 0 should throw an error when count is invalid: 2`] = `"Invalid count value"`;
 
-exports[`repeat should throw an error when string is null or undefined: 1`] = `"Cannot call method on undefined"`;
+exports[`repeat 0 should throw an error when string is null or undefined: 1`] = `"Cannot call method on undefined"`;
 
-exports[`repeat should throw an error when string is null or undefined: 2`] = `"Cannot call method on undefined"`;
+exports[`repeat 0 should throw an error when string is null or undefined: 2`] = `"Cannot call method on undefined"`;
 
-exports[`repeat should throw an error when string is null or undefined: 3`] = `"Cannot call method on null"`;
+exports[`repeat 0 should throw an error when string is null or undefined: 3`] = `"Cannot call method on null"`;
+
+exports[`repeat 1 should throw an error when count is invalid: 1`] = `"Invalid count value"`;
+
+exports[`repeat 1 should throw an error when count is invalid: 2`] = `"Invalid count value"`;
+
+exports[`repeat 1 should throw an error when string is null or undefined: 1`] = `"Cannot call method on undefined"`;
+
+exports[`repeat 1 should throw an error when string is null or undefined: 2`] = `"Cannot call method on undefined"`;
+
+exports[`repeat 1 should throw an error when string is null or undefined: 3`] = `"Cannot call method on null"`;

@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2019-present",
-  "date": "2019-08-05T16:02:40.463Z",
+  "date": "2019-08-05T17:37:02.839Z",
   "describe": "",
   "description": "Constructs and returns a new string which contains the specified number of copies of the string.",
   "file": "string-repeat-x.js",
-  "hash": "2eb44c5bb129e35e8fd2",
+  "hash": "90277b83df3dd35902e6",
   "license": "MIT",
   "version": "1.0.10"
 }
@@ -1462,10 +1462,6 @@ var to_integer_x_esm_toInteger = function toInteger(value) {
 
 // CONCATENATED MODULE: ./dist/string-repeat-x.esm.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "implementation", function() { return implementation; });
-var string_repeat_x_esm_this = undefined;
-
-function string_repeat_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
 
 
 
@@ -1473,11 +1469,9 @@ function string_repeat_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis
 
 var string_repeat_x_esm_EMPTY_STRING = '';
 var nativeRepeat = string_repeat_x_esm_EMPTY_STRING.repeat;
-var hasNative = attempt_x_esm(function () {
-  string_repeat_x_esm_newArrowCheck(this, string_repeat_x_esm_this);
-
+var hasNative = attempt_x_esm(function attemptee() {
   return nativeRepeat.call('a', 5);
-}.bind(undefined)).value === 'aaaaa';
+}).value === 'aaaaa';
 
 var patchedRepeat = function repeat(value, count) {
   return nativeRepeat.call(require_object_coercible_x_esm(value), count) || string_repeat_x_esm_EMPTY_STRING;

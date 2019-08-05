@@ -1,7 +1,3 @@
-var _this = this;
-
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
 import numberIsFinite from 'is-finite-x';
 import toInteger from 'to-integer-x';
 import requireObjectCoercible from 'require-object-coercible-x';
@@ -9,11 +5,9 @@ import toStr from 'to-string-x';
 import attempt from 'attempt-x';
 var EMPTY_STRING = '';
 var nativeRepeat = EMPTY_STRING.repeat;
-var hasNative = attempt(function () {
-  _newArrowCheck(this, _this);
-
+var hasNative = attempt(function attemptee() {
   return nativeRepeat.call('a', 5);
-}.bind(this)).value === 'aaaaa';
+}).value === 'aaaaa';
 
 var patchedRepeat = function repeat(value, count) {
   return nativeRepeat.call(requireObjectCoercible(value), count) || EMPTY_STRING;
