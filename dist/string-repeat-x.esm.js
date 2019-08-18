@@ -3,14 +3,14 @@ import toInteger from 'to-integer-x';
 import requireObjectCoercible from 'require-object-coercible-x';
 import toStr from 'to-string-x';
 import attempt from 'attempt-x';
+import methodize from 'simple-methodize-x';
 var EMPTY_STRING = '';
 var nativeRepeat = EMPTY_STRING.repeat;
-var hasNative = attempt(function attemptee() {
-  return nativeRepeat.call('a', 5);
-}).value === 'aaaaa';
+var methodizedRepeat = typeof nativeRepeat === 'function' && methodize(nativeRepeat);
+var isWorking = attempt(methodizedRepeat, 'a', 5).value === 'aaaaa';
 
 var patchedRepeat = function repeat(value, count) {
-  return nativeRepeat.call(requireObjectCoercible(value), count) || EMPTY_STRING;
+  return methodizedRepeat(requireObjectCoercible(value), count) || EMPTY_STRING;
 };
 
 var assertRange = function assertRange(n) {
@@ -51,7 +51,7 @@ export var implementation = function repeat(value, count) {
  * @returns {string} Repeated string.
  */
 
-var $repeat = hasNative ? patchedRepeat : implementation;
+var $repeat = isWorking ? patchedRepeat : implementation;
 export default $repeat;
 
 //# sourceMappingURL=string-repeat-x.esm.js.map

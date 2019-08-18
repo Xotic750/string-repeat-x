@@ -3,16 +3,15 @@ import toInteger from 'to-integer-x';
 import requireObjectCoercible from 'require-object-coercible-x';
 import toStr from 'to-string-x';
 import attempt from 'attempt-x';
+import methodize from 'simple-methodize-x';
 
 const EMPTY_STRING = '';
 const {repeat: nativeRepeat} = EMPTY_STRING;
-const hasNative =
-  attempt(function attemptee() {
-    return nativeRepeat.call('a', 5);
-  }).value === 'aaaaa';
+const methodizedRepeat = typeof nativeRepeat === 'function' && methodize(nativeRepeat);
+const isWorking = attempt(methodizedRepeat, 'a', 5).value === 'aaaaa';
 
 const patchedRepeat = function repeat(value, count) {
-  return nativeRepeat.call(requireObjectCoercible(value), count) || EMPTY_STRING;
+  return methodizedRepeat(requireObjectCoercible(value), count) || EMPTY_STRING;
 };
 
 const assertRange = function assertRange(n) {
@@ -52,6 +51,6 @@ export const implementation = function repeat(value, count) {
  * @param {(number|string)} count - The number of times to repeat the string.
  * @returns {string} Repeated string.
  */
-const $repeat = hasNative ? patchedRepeat : implementation;
+const $repeat = isWorking ? patchedRepeat : implementation;
 
 export default $repeat;

@@ -53,6 +53,7 @@
   "dependencies": {
     "attempt-x": "^2.1.0",
     "is-finite-x": "^4.2.0",
+    "simple-methodize-x": "^1.0.2",
     "require-object-coercible-x": "^2.1.0",
     "to-integer-x": "^4.2.0",
     "to-string-x": "^2.1.0"
