@@ -2,7 +2,7 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2019-present",
-  "date": "2019-09-05T20:45:02.170Z",
+  "date": "2020-01-31T11:41:18.973Z",
   "describe": "",
   "description": "Constructs and returns a new string which contains the specified number of copies of the string.",
   "file": "string-repeat-x.js",
